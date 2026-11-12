@@ -1,0 +1,56 @@
+[
+    {
+        "scenario_id": "ANOM-001",
+        "issue_type": "student_overlapping_exams",
+        "ground_truth": true,
+        "source_record_ids": [
+            "STU-000001",
+            "EXAM-2027-000001",
+            "EXAM-2027-000002"
+        ],
+        "description": "Simulate enrollment of the same student in two exams scheduled at the same time."
+    },
+    {
+        "scenario_id": "ANOM-002",
+        "issue_type": "room_capacity_exceeded",
+        "ground_truth": true,
+        "source_record_ids": [
+            "EXAM-2027-000001",
+            "ROOM-000001"
+        ],
+        "proposed_student_count": 88,
+        "room_capacity": 87
+    },
+    {
+        "scenario_id": "ANOM-003",
+        "issue_type": "invigilator_double_booked",
+        "ground_truth": true,
+        "source_record_ids": [
+            "EXAM-2027-000001",
+            "EXAM-2027-000002",
+            "INV-000001"
+        ],
+        "description": "Assign the same invigilator to both overlapping exams."
+    },
+    {
+        "scenario_id": "ANOM-004",
+        "issue_type": "accommodation_ignored",
+        "ground_truth": true,
+        "source_record_ids": [
+            "STU-000001",
+            "EXAM-2027-000001"
+        ],
+        "required_extra_minutes": 30,
+        "proposed_extra_minutes": 0
+    },
+    {
+        "scenario_id": "ANOM-005",
+        "issue_type": "exam_outside_room_availability",
+        "ground_truth": true,
+        "source_record_ids": [
+            "EXAM-2027-000001",
+            "ROOM-000100"
+        ],
+        "description": "Simulate assigning the exam to a closed room."
+    }
+]

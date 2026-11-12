@@ -1,0 +1,37 @@
+[
+    {
+        "scenario_id": "ANOM-001",
+        "conflicts_detected": 3,
+        "detected_issue_types": [
+            "student_overlapping_exams"
+        ]
+    },
+    {
+        "scenario_id": "ANOM-002",
+        "conflicts_detected": 1,
+        "detected_issue_types": [
+            "room_capacity_exceeded"
+        ]
+    },
+    {
+        "scenario_id": "ANOM-003",
+        "conflicts_detected": 1,
+        "detected_issue_types": [
+            "invigilator_double_booked"
+        ]
+    },
+    {
+        "scenario_id": "ANOM-004",
+        "conflicts_detected": 3,
+        "detected_issue_types": [
+            "accommodation_ignored"
+        ]
+    },
+    {
+        "scenario_id": "ANOM-005",
+        "conflicts_detected": 1,
+        "detected_issue_types": [
+            "exam_outside_room_availability"
+        ]
+    }
+]

@@ -1,0 +1,127 @@
+
+{
+  "project": "Exam Scheduling System",
+  "dataset_version": "1.0",
+  "generation_seed": 20261022,
+  "generated_at": "2026-01-01T00:00:00",
+  "data_type": "Synthetic",
+  "description": "Synthetic academic examination scheduling dataset for testing room allocation, invigilator assignments, student conflicts, equipment requirements, and accommodations.",
+  "baseline_records": {
+    "students": 5000,
+    "courses": 100,
+    "enrollments": 5000,
+    "exams": 300,
+    "exam_requirements": 203,
+    "rooms": 100,
+    "room_capacities": 100,
+    "invigilators": 200,
+    "availability": 6601,
+    "accommodations": 250,
+    "schedule_assignments": 300
+  },
+  "files": [
+    {
+      "filename": "students.csv",
+      "entity": "Student",
+      "format": "CSV",
+      "records": 5000,
+      "primary_key": "id"
+    },
+    {
+      "filename": "courses.csv",
+      "entity": "Course",
+      "format": "CSV",
+      "records": 100,
+      "primary_key": "id"
+    },
+    {
+      "filename": "enrollments.csv",
+      "entity": "Enrollment",
+      "format": "CSV",
+      "records": 5000,
+      "primary_key": "id"
+    },
+    {
+      "filename": "exams.csv",
+      "entity": "Exam",
+      "format": "CSV",
+      "records": 300,
+      "primary_key": "id"
+    },
+    {
+      "filename": "exam_requirements.csv",
+      "entity": "ExamRequirement",
+      "format": "CSV",
+      "records": 203,
+      "primary_key": "id"
+    },
+    {
+      "filename": "rooms.csv",
+      "entity": "Room",
+      "format": "CSV",
+      "records": 100,
+      "primary_key": "id"
+    },
+    {
+      "filename": "room_capacities.csv",
+      "entity": "RoomCapacity",
+      "format": "CSV",
+      "records": 100,
+      "primary_key": "id"
+    },
+    {
+      "filename": "invigilators.csv",
+      "entity": "Invigilator",
+      "format": "CSV",
+      "records": 200,
+      "primary_key": "id"
+    },
+    {
+      "filename": "availability.csv",
+      "entity": "Availability",
+      "format": "CSV",
+      "records": 6601,
+      "primary_key": "id"
+    },
+    {
+      "filename": "accommodations.csv",
+      "entity": "Accommodation",
+      "format": "CSV",
+      "records": 250,
+      "primary_key": "id"
+    },
+    {
+      "filename": "schedule_assignments.csv",
+      "entity": "ScheduleAssignment",
+      "format": "CSV",
+      "records": 300,
+      "primary_key": "id"
+    }
+  ],
+  "anomaly_scenarios": {
+    "count": 5,
+    "location": "anomalies/",
+    "scenarios": [
+      "student_overlapping_exams",
+      "room_capacity_exceeded",
+      "invigilator_double_booked",
+      "accommodation_ignored",
+      "exam_outside_room_availability"
+    ]
+  },
+  "validation": {
+    "baseline_checks": 12767,
+    "baseline_errors": 0,
+    "automated_tests_passed": 15,
+    "schedule_exams": 300,
+    "schedule_conflicts": 0,
+    "anomaly_scenarios_detected": 5,
+    "reproducibility": "passed",
+    "checksum_algorithm": "SHA-256"
+  },
+  "provenance": {
+    "source": "Programmatically generated synthetic data",
+    "seed": 20261022,
+    "contains_real_personal_data": false
+  }
+}

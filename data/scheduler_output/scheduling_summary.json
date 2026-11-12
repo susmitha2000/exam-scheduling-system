@@ -1,0 +1,7 @@
+{
+    "total_exams": 300,
+    "scheduled_exams": 300,
+    "unassigned_exams": 0,
+    "scheduling_rate_percent": 100.0,
+    "algorithm": "Greedy constraint-based allocation"
+}

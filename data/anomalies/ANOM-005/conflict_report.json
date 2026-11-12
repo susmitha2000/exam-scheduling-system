@@ -1,0 +1,8 @@
+[
+    {
+        "issue_type": "exam_outside_room_availability",
+        "exam_id": "EXAM-2027-000001",
+        "room_id": "ROOM-000001",
+        "description": "Exam is scheduled during a room closure or unavailable period."
+    }
+]

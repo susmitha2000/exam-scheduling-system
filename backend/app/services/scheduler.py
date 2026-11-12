@@ -1,0 +1,381 @@
+
+import csv
+from collections import defaultdict
+from datetime import datetime, date, timedelta
+from pathlib import Path
+
+
+DATA_DIR = Path(__file__).resolve().parents[3] / "data"
+
+
+def read_csv(filename):
+    path = DATA_DIR / filename
+
+    with open(path, "r", encoding="utf-8-sig", newline="") as file:
+        return list(csv.DictReader(file))
+
+
+def write_csv(filename, rows, fieldnames):
+    path = DATA_DIR / filename
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(path, "w", encoding="utf-8", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def parse_datetime(value):
+    return datetime.fromisoformat(value)
+
+
+def parse_bool(value):
+    return str(value).strip().lower() in ("true", "1", "yes")
+
+
+def overlaps(start1, end1, start2, end2):
+    return start1 < end2 and start2 < end1
+
+
+def get_capacity(room_id, exam_date, capacities):
+    exam_day = date.fromisoformat(exam_date)
+
+    matching = []
+
+    for record in capacities:
+        if record["room_id"] != room_id:
+            continue
+
+        effective_from = date.fromisoformat(record["effective_from"])
+        effective_to = (
+            date.fromisoformat(record["effective_to"])
+            if record["effective_to"]
+            else None
+        )
+
+        if effective_from <= exam_day and (
+            effective_to is None or exam_day <= effective_to
+        ):
+            matching.append(int(record["capacity"]))
+
+    return max(matching) if matching else 0
+
+
+def resource_is_available(
+    resource_id,
+    resource_field,
+    start,
+    end,
+    availability
+):
+    records = [
+        row for row in availability
+        if row[resource_field] == resource_id
+    ]
+
+    if not records:
+        return False
+
+    # An overlapping unavailable record blocks the resource.
+    for row in records:
+        if not parse_bool(row["is_available"]):
+            blocked_start = parse_datetime(row["start_time"])
+            blocked_end = parse_datetime(row["end_time"])
+
+            if overlaps(start, end, blocked_start, blocked_end):
+                return False
+
+    # At least one available window must cover the full assignment.
+    return any(
+        parse_bool(row["is_available"])
+        and parse_datetime(row["start_time"]) <= start
+        and parse_datetime(row["end_time"]) >= end
+        for row in records
+    )
+
+def room_meets_requirements(room, exam, requirements_by_exam):
+    requirements = requirements_by_exam.get(exam["id"], [])
+
+    for requirement in requirements:
+        requirement_type = requirement["requirement_type"]
+        required_quantity = int(requirement["required_quantity"])
+
+        if requirement_type == "projector":
+            if not parse_bool(room["has_projector"]):
+                return False
+
+        elif requirement_type == "computers":
+            if not parse_bool(room["has_computers"]):
+                return False
+
+        elif requirement_type == "accessible_seating":
+            if not parse_bool(room["is_accessible"]):
+                return False
+
+    return True
+
+def generate_schedule():
+    exams = read_csv("exams.csv")
+    rooms = read_csv("rooms.csv")
+    capacities = read_csv("room_capacities.csv")
+    invigilators = read_csv("invigilators.csv")
+    availability = read_csv("availability.csv")
+    enrollments = read_csv("enrollments.csv")
+    accommodations = read_csv("accommodations.csv")
+    exam_requirements = read_csv("exam_requirements.csv")
+
+    requirements_by_exam = defaultdict(list)
+
+    for requirement in exam_requirements:
+        requirements_by_exam[requirement["exam_id"]].append(requirement)
+
+    # Build course-to-student mapping.
+    course_students = defaultdict(set)
+
+    for enrollment in enrollments:
+        if enrollment["status"].lower() == "active":
+            course_students[enrollment["course_id"]].add(
+                enrollment["student_id"]
+            )
+
+    # Build student accommodation mapping.
+    student_accommodations = defaultdict(list)
+
+    for accommodation in accommodations:
+        student_accommodations[accommodation["student_id"]].append(
+            accommodation
+        )
+
+    # Only active invigilators can be assigned.
+    active_invigilators = [
+        inv for inv in invigilators
+        if parse_bool(inv["is_active"])
+    ]
+
+    # Schedule exams with larger enrollment first.
+    exams.sort(
+        key=lambda exam: (
+            exam["exam_date"],
+            exam["start_time"],
+            -len(course_students[exam["course_id"]])
+        )
+    )
+
+    room_bookings = defaultdict(list)
+    invigilator_bookings = defaultdict(list)
+    student_bookings = defaultdict(list)
+
+    assignments = []
+    unassigned = []
+
+    for exam in exams:
+        exam_id = exam["id"]
+        course_id = exam["course_id"]
+
+        students = course_students[course_id]
+        student_count = len(students)
+
+        start = parse_datetime(exam["start_time"])
+        standard_end = start + timedelta(
+            minutes=int(exam["duration_minutes"])
+        )
+
+        # Extend the assignment to respect the longest accommodation.
+        max_extra_minutes = 0
+
+        for student_id in students:
+            for accommodation in student_accommodations[student_id]:
+                effective_from = date.fromisoformat(
+                    accommodation["effective_from"]
+                )
+
+                effective_to = (
+                    date.fromisoformat(accommodation["effective_to"])
+                    if accommodation["effective_to"]
+                    else None
+                )
+
+                exam_day = start.date()
+
+                if effective_from <= exam_day and (
+                    effective_to is None or exam_day <= effective_to
+                ):
+                    max_extra_minutes = max(
+                        max_extra_minutes,
+                        int(accommodation["extra_minutes"])
+                    )
+
+        end = standard_end + timedelta(minutes=max_extra_minutes)
+
+        # Student conflict check.
+        conflicting_students = []
+
+        for student_id in students:
+            for previous_start, previous_end in student_bookings[student_id]:
+                if overlaps(start, end, previous_start, previous_end):
+                    conflicting_students.append(student_id)
+                    break
+
+        if conflicting_students:
+            unassigned.append({
+                "exam_id": exam_id,
+                "reason": (
+                    f"{len(conflicting_students)} students have "
+                    "overlapping exams"
+                )
+            })
+            continue
+
+        selected_room = None
+        room_rejections = defaultdict(int)
+
+        for room in rooms:
+            room_id = room["id"]
+
+            capacity = get_capacity(
+                room_id,
+                exam["exam_date"],
+                capacities
+            )
+
+            if capacity < student_count:
+                room_rejections["insufficient_capacity"] += 1
+                continue
+
+            if not room_meets_requirements(
+                room,
+                exam,
+                requirements_by_exam
+            ):
+                room_rejections["equipment_or_accessibility"] += 1
+                continue
+
+            if not resource_is_available(
+                room_id,
+                "room_id",
+                start,
+                end,
+                availability
+            ):
+                room_rejections["unavailable"] += 1
+                continue
+
+            if any(
+                overlaps(start, end, booked_start, booked_end)
+                for booked_start, booked_end in room_bookings[room_id]
+            ):
+                continue
+
+            selected_room = room
+            break
+
+        if selected_room is None:
+            rejection_summary = ", ".join(
+                f"{count} rooms rejected: {reason}"
+                for reason, count in sorted(room_rejections.items())
+            )
+
+            unassigned.append({
+                "exam_id": exam_id,
+                "reason": (
+                    f"No suitable room found. {rejection_summary}"
+                    if rejection_summary
+                    else "No suitable room found."
+                )
+            })
+            continue
+
+        selected_invigilator = None
+
+        for invigilator in active_invigilators:
+            invigilator_id = invigilator["id"]
+
+            if not resource_is_available(
+                invigilator_id,
+                "invigilator_id",
+                start,
+                end,
+                availability
+            ):
+                continue
+
+            if any(
+                overlaps(start, end, booked_start, booked_end)
+                for booked_start, booked_end
+                in invigilator_bookings[invigilator_id]
+            ):
+                room_rejections["already_booked"] += 1
+                continue
+
+            selected_invigilator = invigilator
+            break
+
+        if selected_invigilator is None:
+            unassigned.append({
+                "exam_id": exam_id,
+                "reason": "No available invigilator"
+            })
+            continue
+
+        room_id = selected_room["id"]
+        invigilator_id = selected_invigilator["id"]
+
+        room_bookings[room_id].append((start, end))
+        invigilator_bookings[invigilator_id].append((start, end))
+
+        for student_id in students:
+            student_bookings[student_id].append((start, end))
+
+        assignments.append({
+            "id": f"ASN-{exam_id}-{room_id}",
+            "exam_id": exam_id,
+            "room_id": room_id,
+            "invigilator_id": invigilator_id,
+            "start_time": start.isoformat(),
+            "end_time": end.isoformat(),
+            "assigned_capacity": student_count,
+            "status": "scheduled",
+            "created_at": "2026-01-01T00:00:00"
+        })
+
+    output_dir = DATA_DIR / "scheduler_output"
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    write_csv(
+        "scheduler_output/generated_schedule.csv",
+        assignments,
+        [
+            "id", "exam_id", "room_id", "invigilator_id",
+            "start_time", "end_time", "assigned_capacity",
+            "status", "created_at"
+        ]
+    )
+
+    write_csv(
+        "scheduler_output/unassigned_exams.csv",
+        unassigned,
+        ["exam_id", "reason"]
+    )
+
+    summary = {
+        "total_exams": len(exams),
+        "scheduled_exams": len(assignments),
+        "unassigned_exams": len(unassigned),
+        "scheduling_rate_percent": round(
+            len(assignments) / len(exams) * 100, 2
+        ) if exams else 0,
+        "algorithm": "Greedy constraint-based allocation"
+    }
+
+    with open(
+        output_dir / "scheduling_summary.json",
+        "w",
+        encoding="utf-8"
+    ) as file:
+        import json
+        json.dump(summary, file, indent=4)
+
+    print("SCHEDULING COMPLETED")
+    print(json.dumps(summary, indent=4))
+
+    return summary

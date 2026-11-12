@@ -1,0 +1,10 @@
+[
+    {
+        "issue_type": "room_capacity_exceeded",
+        "exam_id": "EXAM-2027-000001",
+        "room_id": "ROOM-000001",
+        "assigned_capacity": 88,
+        "room_capacity": 87,
+        "description": "Assigned students exceed room capacity."
+    }
+]

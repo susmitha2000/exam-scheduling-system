@@ -1,0 +1,23 @@
+[
+    {
+        "issue_type": "accommodation_ignored",
+        "exam_id": "EXAM-2027-000001",
+        "student_id": "STU-000041",
+        "required_extra_minutes": 30,
+        "description": "Assignment ends before the student's accommodated exam duration."
+    },
+    {
+        "issue_type": "accommodation_ignored",
+        "exam_id": "EXAM-2027-000001",
+        "student_id": "STU-000001",
+        "required_extra_minutes": 30,
+        "description": "Assignment ends before the student's accommodated exam duration."
+    },
+    {
+        "issue_type": "accommodation_ignored",
+        "exam_id": "EXAM-2027-000001",
+        "student_id": "STU-000021",
+        "required_extra_minutes": 30,
+        "description": "Assignment ends before the student's accommodated exam duration."
+    }
+]

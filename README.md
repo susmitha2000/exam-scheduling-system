@@ -1,83 +1,188 @@
-
 # Exam Scheduling and Room Allocation System
 
-## Project Overview
+## 1. Project Overview
 
-An examination scheduling management system designed to schedule university examinations while respecting student enrollment, room capacity, room availability, equipment requirements, student accommodations, and invigilator availability.
+An examination scheduling system that allocates examinations to rooms and invigilators while considering student enrollment, room capacity, availability, equipment requirements, accommodations, and scheduling conflicts.
 
-## Project Objectives
+The project uses reproducible synthetic academic data.
 
-- Generate and manage synthetic university data.
-- Manage students, courses, enrollments, and examinations.
-- Manage examination rooms and invigilators.
+## 2. Implemented Features
+
+- Generate synthetic students, courses, enrollments, examinations, rooms, and invigilators.
+- Generate room capacity, availability, exam requirements, and accommodation records.
+- Validate primary keys, foreign keys, data constraints, and record consistency.
 - Detect student, room, and invigilator scheduling conflicts.
-- Automatically allocate examination rooms and time slots.
-- Apply student accommodation requirements.
-- Identify unscheduled examinations with reason codes.
-- Maintain scheduling history and audit records.
-- Generate analytics and validation reports.
+- Generate five labelled anomaly scenarios for testing.
+- Allocate examinations using a greedy constraint-based scheduling algorithm.
+- Consider room capacity, equipment, accessibility, availability, student conflicts, and invigilator availability.
+- Generate scheduling and validation reports.
+- Verify reproducibility using SHA-256 checksums.
 
-## Technology Stack
+## 3. Technology Stack
 
-- Frontend: React + TypeScript
-- Backend: Python + FastAPI
-- Database: SQLite
-- ORM: SQLAlchemy
-- Data Generation: Python
-- Data Validation: Pydantic
+- Python
+- FastAPI
+- SQLAlchemy
+- SQLite
+- Pydantic
+- Pytest
+- React and TypeScript (frontend project)
 
-## Project Structure
+## 4. Project Structure
 
 ```text
 exam-scheduling-system/
 ├── backend/
-├── frontend/
+│   ├── app/
+│   ├── tests/
+│   ├── generate_data.py
+│   ├── validate_data.py
+│   ├── inject_anomalies.py
+│   ├── run_scheduler.py
+│   ├── validate_generated_schedule.py
+│   └── verify_reproducibility.py
 ├── data/
+│   ├── anomalies/
+│   └── scheduler_output/
 ├── docs/
-├── scripts/
+│   └── schema-and-data-dictionary.md
+├── frontend/
 ├── prompt-history/
 └── README.md
 ```
 
-## Project Status
+## 5. Synthetic Dataset
 
-Currently in development.
+The baseline dataset is generated using seed `20261022`.
 
-## Synthetic Data
+| Entity | Records |
+|---|---:|
+| Students | 5,000 |
+| Courses | 100 |
+| Enrollments | 5,000 |
+| Exams | 300 |
+| Exam Requirements | 203 |
+| Rooms | 100 |
+| Room Capacities | 100 |
+| Invigilators | 200 |
+| Availability | 6,601 |
+| Accommodations | 250 |
+| Schedule Assignments | 300 |
 
-The project will use reproducible synthetic data with a fixed random seed: 20261022.
+All generated records are synthetic.
 
-Target baseline:
-- 5,000 students
-- 300 examinations
-- 100 rooms
-- 200 invigilators
+## 6. Setup Instructions
 
-## Documentation
+### Prerequisites
 
-Additional documentation will be maintained in the docs/ directory.
+- Python 3.11 or later
+- Git
 
-## AI Usage Disclosure
+### Create and activate a virtual environment
 
-AI tools are used for development assistance. All prompts will be documented in prompt-history/. Implementation decisions, code, and validation will be reviewed and understood by the candidate.
+From the repository root:
 
-## License
-
-To be determined.
+```powershell
+cd backend
+python -m venv .venv
+.venv\Scripts\Activate.ps1
 ```
 
-### 5.3 Save the file
+### Install dependencies
 
-Press:
+```powershell
+python -m pip install -r requirements.txt
+```
 
-`Ctrl + S`
+## 7. Run the Project
 
-<badge color="success">Checkpoint 5.1</badge>
+Run these commands from the `backend` directory with the virtual environment activated.
 
-You should now see `README.md` under your project folder.
+### Generate synthetic data
 
-**Send me a screenshot of your VS Code Explorer showing README.md.**
+```powershell
+python generate_data.py
+```
 
-Next, we'll create `.gitignore` to protect environment files, passwords and other sensitive information before uploading anything publicly.
+### Validate baseline data
 
-We'll keep going step by step!
+```powershell
+python validate_data.py
+```
+
+### Generate labelled anomaly scenarios
+
+```powershell
+python inject_anomalies.py
+```
+
+### Run the scheduling algorithm
+
+```powershell
+python run_scheduler.py
+```
+
+### Independently validate the generated schedule
+
+```powershell
+python validate_generated_schedule.py
+```
+
+### Verify reproducibility
+
+```powershell
+python verify_reproducibility.py
+```
+
+### Run automated tests
+
+```powershell
+python -m pytest tests/ -v
+```
+
+### Start the FastAPI application
+
+```powershell
+python -m uvicorn app.main:app --reload
+```
+
+The API documentation is available at:
+
+`http://127.0.0.1:8000/docs`
+
+## 8. Expected Verification Results
+
+The current baseline verification results include:
+
+- 15 automated tests passing.
+- 12,767 baseline validation checks with zero errors.
+- Five labelled anomaly scenarios detected.
+- 300 examinations scheduled out of 300.
+- Zero conflicts in the independently validated generated schedule.
+- Reproducibility verification using SHA-256 checksums.
+
+Run the verification commands to reproduce these results.
+
+## 9. Documentation
+
+See `docs/schema-and-data-dictionary.md` for entity definitions, relationships, data fields, integrity rules, and implementation limitations.
+
+## 10. AI Usage Disclosure
+
+AI tools were used as development assistance for project planning, code guidance, debugging, test development, and documentation.
+
+The candidate reviewed, executed, and tested the implementation and is responsible for understanding its design, decisions, limitations, and results.
+
+A record of AI-assisted work is maintained in `prompt-history/`. The prompt history should be treated as a summary where verbatim exports are unavailable.
+
+## 11. Current Limitations
+
+- A dedicated audit/event history table is not implemented.
+- Complete lifecycle state-transition validation is not implemented.
+- Equipment quantities are not yet validated; current room matching uses Boolean equipment attributes.
+- Generator record counts are currently fixed rather than configurable.
+- Portable SQL seed export is not yet implemented.
+
+## 12. License
+
+To be determined.

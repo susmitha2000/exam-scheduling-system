@@ -1,0 +1,9 @@
+[
+    {
+        "issue_type": "invigilator_double_booked",
+        "exam_id": "EXAM-2027-000002",
+        "other_exam_id": "EXAM-2027-000001",
+        "invigilator_id": "INV-000001",
+        "description": "The same invigilator is assigned to overlapping exams."
+    }
+]

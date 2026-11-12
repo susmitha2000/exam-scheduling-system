@@ -1,0 +1,15 @@
+{
+    "seed": 20261022,
+    "students": 5000,
+    "courses": 100,
+    "enrollments": 5000,
+    "exams": 300,
+    "exam_requirements": 203,
+    "rooms": 100,
+    "room_capacities": 100,
+    "invigilators": 200,
+    "availability": 6601,
+    "accommodations": 250,
+    "schedule_assignments": 300,
+    "labelled_anomalies": 5
+}

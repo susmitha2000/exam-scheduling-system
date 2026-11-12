@@ -1,0 +1,204 @@
+id,exam_id,requirement_type,required_quantity,details
+1,EXAM-2027-000001,projector,1,Projector required for this examination
+2,EXAM-2027-000001,computers,1,Computer room required for this examination
+3,EXAM-2027-000001,accessible_seating,1,Accessible seating required
+4,EXAM-2027-000004,projector,1,Projector required for this examination
+5,EXAM-2027-000006,computers,1,Computer room required for this examination
+6,EXAM-2027-000007,projector,1,Projector required for this examination
+7,EXAM-2027-000008,accessible_seating,1,Accessible seating required
+8,EXAM-2027-000010,projector,1,Projector required for this examination
+9,EXAM-2027-000011,computers,1,Computer room required for this examination
+10,EXAM-2027-000013,projector,1,Projector required for this examination
+11,EXAM-2027-000015,accessible_seating,1,Accessible seating required
+12,EXAM-2027-000016,projector,1,Projector required for this examination
+13,EXAM-2027-000016,computers,1,Computer room required for this examination
+14,EXAM-2027-000019,projector,1,Projector required for this examination
+15,EXAM-2027-000021,computers,1,Computer room required for this examination
+16,EXAM-2027-000022,projector,1,Projector required for this examination
+17,EXAM-2027-000022,accessible_seating,1,Accessible seating required
+18,EXAM-2027-000025,projector,1,Projector required for this examination
+19,EXAM-2027-000026,computers,1,Computer room required for this examination
+20,EXAM-2027-000028,projector,1,Projector required for this examination
+21,EXAM-2027-000029,accessible_seating,1,Accessible seating required
+22,EXAM-2027-000031,projector,1,Projector required for this examination
+23,EXAM-2027-000031,computers,1,Computer room required for this examination
+24,EXAM-2027-000034,projector,1,Projector required for this examination
+25,EXAM-2027-000036,computers,1,Computer room required for this examination
+26,EXAM-2027-000036,accessible_seating,1,Accessible seating required
+27,EXAM-2027-000037,projector,1,Projector required for this examination
+28,EXAM-2027-000040,projector,1,Projector required for this examination
+29,EXAM-2027-000041,computers,1,Computer room required for this examination
+30,EXAM-2027-000043,projector,1,Projector required for this examination
+31,EXAM-2027-000043,accessible_seating,1,Accessible seating required
+32,EXAM-2027-000046,projector,1,Projector required for this examination
+33,EXAM-2027-000046,computers,1,Computer room required for this examination
+34,EXAM-2027-000049,projector,1,Projector required for this examination
+35,EXAM-2027-000050,accessible_seating,1,Accessible seating required
+36,EXAM-2027-000051,computers,1,Computer room required for this examination
+37,EXAM-2027-000052,projector,1,Projector required for this examination
+38,EXAM-2027-000055,projector,1,Projector required for this examination
+39,EXAM-2027-000056,computers,1,Computer room required for this examination
+40,EXAM-2027-000057,accessible_seating,1,Accessible seating required
+41,EXAM-2027-000058,projector,1,Projector required for this examination
+42,EXAM-2027-000061,projector,1,Projector required for this examination
+43,EXAM-2027-000061,computers,1,Computer room required for this examination
+44,EXAM-2027-000064,projector,1,Projector required for this examination
+45,EXAM-2027-000064,accessible_seating,1,Accessible seating required
+46,EXAM-2027-000066,computers,1,Computer room required for this examination
+47,EXAM-2027-000067,projector,1,Projector required for this examination
+48,EXAM-2027-000070,projector,1,Projector required for this examination
+49,EXAM-2027-000071,computers,1,Computer room required for this examination
+50,EXAM-2027-000071,accessible_seating,1,Accessible seating required
+51,EXAM-2027-000073,projector,1,Projector required for this examination
+52,EXAM-2027-000076,projector,1,Projector required for this examination
+53,EXAM-2027-000076,computers,1,Computer room required for this examination
+54,EXAM-2027-000078,accessible_seating,1,Accessible seating required
+55,EXAM-2027-000079,projector,1,Projector required for this examination
+56,EXAM-2027-000081,computers,1,Computer room required for this examination
+57,EXAM-2027-000082,projector,1,Projector required for this examination
+58,EXAM-2027-000085,projector,1,Projector required for this examination
+59,EXAM-2027-000085,accessible_seating,1,Accessible seating required
+60,EXAM-2027-000086,computers,1,Computer room required for this examination
+61,EXAM-2027-000088,projector,1,Projector required for this examination
+62,EXAM-2027-000091,projector,1,Projector required for this examination
+63,EXAM-2027-000091,computers,1,Computer room required for this examination
+64,EXAM-2027-000092,accessible_seating,1,Accessible seating required
+65,EXAM-2027-000094,projector,1,Projector required for this examination
+66,EXAM-2027-000096,computers,1,Computer room required for this examination
+67,EXAM-2027-000097,projector,1,Projector required for this examination
+68,EXAM-2027-000099,accessible_seating,1,Accessible seating required
+69,EXAM-2027-000100,projector,1,Projector required for this examination
+70,EXAM-2027-000101,computers,1,Computer room required for this examination
+71,EXAM-2027-000103,projector,1,Projector required for this examination
+72,EXAM-2027-000106,projector,1,Projector required for this examination
+73,EXAM-2027-000106,computers,1,Computer room required for this examination
+74,EXAM-2027-000106,accessible_seating,1,Accessible seating required
+75,EXAM-2027-000109,projector,1,Projector required for this examination
+76,EXAM-2027-000111,computers,1,Computer room required for this examination
+77,EXAM-2027-000112,projector,1,Projector required for this examination
+78,EXAM-2027-000113,accessible_seating,1,Accessible seating required
+79,EXAM-2027-000115,projector,1,Projector required for this examination
+80,EXAM-2027-000116,computers,1,Computer room required for this examination
+81,EXAM-2027-000118,projector,1,Projector required for this examination
+82,EXAM-2027-000120,accessible_seating,1,Accessible seating required
+83,EXAM-2027-000121,projector,1,Projector required for this examination
+84,EXAM-2027-000121,computers,1,Computer room required for this examination
+85,EXAM-2027-000124,projector,1,Projector required for this examination
+86,EXAM-2027-000126,computers,1,Computer room required for this examination
+87,EXAM-2027-000127,projector,1,Projector required for this examination
+88,EXAM-2027-000127,accessible_seating,1,Accessible seating required
+89,EXAM-2027-000130,projector,1,Projector required for this examination
+90,EXAM-2027-000131,computers,1,Computer room required for this examination
+91,EXAM-2027-000133,projector,1,Projector required for this examination
+92,EXAM-2027-000134,accessible_seating,1,Accessible seating required
+93,EXAM-2027-000136,projector,1,Projector required for this examination
+94,EXAM-2027-000136,computers,1,Computer room required for this examination
+95,EXAM-2027-000139,projector,1,Projector required for this examination
+96,EXAM-2027-000141,computers,1,Computer room required for this examination
+97,EXAM-2027-000141,accessible_seating,1,Accessible seating required
+98,EXAM-2027-000142,projector,1,Projector required for this examination
+99,EXAM-2027-000145,projector,1,Projector required for this examination
+100,EXAM-2027-000146,computers,1,Computer room required for this examination
+101,EXAM-2027-000148,projector,1,Projector required for this examination
+102,EXAM-2027-000148,accessible_seating,1,Accessible seating required
+103,EXAM-2027-000151,projector,1,Projector required for this examination
+104,EXAM-2027-000151,computers,1,Computer room required for this examination
+105,EXAM-2027-000154,projector,1,Projector required for this examination
+106,EXAM-2027-000155,accessible_seating,1,Accessible seating required
+107,EXAM-2027-000156,computers,1,Computer room required for this examination
+108,EXAM-2027-000157,projector,1,Projector required for this examination
+109,EXAM-2027-000160,projector,1,Projector required for this examination
+110,EXAM-2027-000161,computers,1,Computer room required for this examination
+111,EXAM-2027-000162,accessible_seating,1,Accessible seating required
+112,EXAM-2027-000163,projector,1,Projector required for this examination
+113,EXAM-2027-000166,projector,1,Projector required for this examination
+114,EXAM-2027-000166,computers,1,Computer room required for this examination
+115,EXAM-2027-000169,projector,1,Projector required for this examination
+116,EXAM-2027-000169,accessible_seating,1,Accessible seating required
+117,EXAM-2027-000171,computers,1,Computer room required for this examination
+118,EXAM-2027-000172,projector,1,Projector required for this examination
+119,EXAM-2027-000175,projector,1,Projector required for this examination
+120,EXAM-2027-000176,computers,1,Computer room required for this examination
+121,EXAM-2027-000176,accessible_seating,1,Accessible seating required
+122,EXAM-2027-000178,projector,1,Projector required for this examination
+123,EXAM-2027-000181,projector,1,Projector required for this examination
+124,EXAM-2027-000181,computers,1,Computer room required for this examination
+125,EXAM-2027-000183,accessible_seating,1,Accessible seating required
+126,EXAM-2027-000184,projector,1,Projector required for this examination
+127,EXAM-2027-000186,computers,1,Computer room required for this examination
+128,EXAM-2027-000187,projector,1,Projector required for this examination
+129,EXAM-2027-000190,projector,1,Projector required for this examination
+130,EXAM-2027-000190,accessible_seating,1,Accessible seating required
+131,EXAM-2027-000191,computers,1,Computer room required for this examination
+132,EXAM-2027-000193,projector,1,Projector required for this examination
+133,EXAM-2027-000196,projector,1,Projector required for this examination
+134,EXAM-2027-000196,computers,1,Computer room required for this examination
+135,EXAM-2027-000197,accessible_seating,1,Accessible seating required
+136,EXAM-2027-000199,projector,1,Projector required for this examination
+137,EXAM-2027-000201,computers,1,Computer room required for this examination
+138,EXAM-2027-000202,projector,1,Projector required for this examination
+139,EXAM-2027-000204,accessible_seating,1,Accessible seating required
+140,EXAM-2027-000205,projector,1,Projector required for this examination
+141,EXAM-2027-000206,computers,1,Computer room required for this examination
+142,EXAM-2027-000208,projector,1,Projector required for this examination
+143,EXAM-2027-000211,projector,1,Projector required for this examination
+144,EXAM-2027-000211,computers,1,Computer room required for this examination
+145,EXAM-2027-000211,accessible_seating,1,Accessible seating required
+146,EXAM-2027-000214,projector,1,Projector required for this examination
+147,EXAM-2027-000216,computers,1,Computer room required for this examination
+148,EXAM-2027-000217,projector,1,Projector required for this examination
+149,EXAM-2027-000218,accessible_seating,1,Accessible seating required
+150,EXAM-2027-000220,projector,1,Projector required for this examination
+151,EXAM-2027-000221,computers,1,Computer room required for this examination
+152,EXAM-2027-000223,projector,1,Projector required for this examination
+153,EXAM-2027-000225,accessible_seating,1,Accessible seating required
+154,EXAM-2027-000226,projector,1,Projector required for this examination
+155,EXAM-2027-000226,computers,1,Computer room required for this examination
+156,EXAM-2027-000229,projector,1,Projector required for this examination
+157,EXAM-2027-000231,computers,1,Computer room required for this examination
+158,EXAM-2027-000232,projector,1,Projector required for this examination
+159,EXAM-2027-000232,accessible_seating,1,Accessible seating required
+160,EXAM-2027-000235,projector,1,Projector required for this examination
+161,EXAM-2027-000236,computers,1,Computer room required for this examination
+162,EXAM-2027-000238,projector,1,Projector required for this examination
+163,EXAM-2027-000239,accessible_seating,1,Accessible seating required
+164,EXAM-2027-000241,projector,1,Projector required for this examination
+165,EXAM-2027-000241,computers,1,Computer room required for this examination
+166,EXAM-2027-000244,projector,1,Projector required for this examination
+167,EXAM-2027-000246,computers,1,Computer room required for this examination
+168,EXAM-2027-000246,accessible_seating,1,Accessible seating required
+169,EXAM-2027-000247,projector,1,Projector required for this examination
+170,EXAM-2027-000250,projector,1,Projector required for this examination
+171,EXAM-2027-000251,computers,1,Computer room required for this examination
+172,EXAM-2027-000253,projector,1,Projector required for this examination
+173,EXAM-2027-000253,accessible_seating,1,Accessible seating required
+174,EXAM-2027-000256,projector,1,Projector required for this examination
+175,EXAM-2027-000256,computers,1,Computer room required for this examination
+176,EXAM-2027-000259,projector,1,Projector required for this examination
+177,EXAM-2027-000260,accessible_seating,1,Accessible seating required
+178,EXAM-2027-000261,computers,1,Computer room required for this examination
+179,EXAM-2027-000262,projector,1,Projector required for this examination
+180,EXAM-2027-000265,projector,1,Projector required for this examination
+181,EXAM-2027-000266,computers,1,Computer room required for this examination
+182,EXAM-2027-000267,accessible_seating,1,Accessible seating required
+183,EXAM-2027-000268,projector,1,Projector required for this examination
+184,EXAM-2027-000271,projector,1,Projector required for this examination
+185,EXAM-2027-000271,computers,1,Computer room required for this examination
+186,EXAM-2027-000274,projector,1,Projector required for this examination
+187,EXAM-2027-000274,accessible_seating,1,Accessible seating required
+188,EXAM-2027-000276,computers,1,Computer room required for this examination
+189,EXAM-2027-000277,projector,1,Projector required for this examination
+190,EXAM-2027-000280,projector,1,Projector required for this examination
+191,EXAM-2027-000281,computers,1,Computer room required for this examination
+192,EXAM-2027-000281,accessible_seating,1,Accessible seating required
+193,EXAM-2027-000283,projector,1,Projector required for this examination
+194,EXAM-2027-000286,projector,1,Projector required for this examination
+195,EXAM-2027-000286,computers,1,Computer room required for this examination
+196,EXAM-2027-000288,accessible_seating,1,Accessible seating required
+197,EXAM-2027-000289,projector,1,Projector required for this examination
+198,EXAM-2027-000291,computers,1,Computer room required for this examination
+199,EXAM-2027-000292,projector,1,Projector required for this examination
+200,EXAM-2027-000295,projector,1,Projector required for this examination
+201,EXAM-2027-000295,accessible_seating,1,Accessible seating required
+202,EXAM-2027-000296,computers,1,Computer room required for this examination
+203,EXAM-2027-000298,projector,1,Projector required for this examination

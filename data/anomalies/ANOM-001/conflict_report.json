@@ -1,0 +1,23 @@
+[
+    {
+        "issue_type": "student_overlapping_exams",
+        "student_id": "STU-000001",
+        "exam_id": "EXAM-2027-000002",
+        "other_exam_id": "EXAM-2027-000001",
+        "description": "Student has two exams scheduled at overlapping times."
+    },
+    {
+        "issue_type": "student_overlapping_exams",
+        "student_id": "STU-000001",
+        "exam_id": "EXAM-2027-000102",
+        "other_exam_id": "EXAM-2027-000101",
+        "description": "Student has two exams scheduled at overlapping times."
+    },
+    {
+        "issue_type": "student_overlapping_exams",
+        "student_id": "STU-000001",
+        "exam_id": "EXAM-2027-000202",
+        "other_exam_id": "EXAM-2027-000201",
+        "description": "Student has two exams scheduled at overlapping times."
+    }
+]
