@@ -179,7 +179,7 @@ AI tools were used as development assistance for project planning, code guidance
 
 The candidate reviewed, executed, and tested the implementation and is responsible for understanding its design, decisions, limitations, and results.
 
-A record of AI-assisted work is maintained in `prompt-history/`. The prompt history should be treated as a summary where verbatim exports are unavailable.
+A record of AI-assisted work is maintained in `prompt-history/`. This document summarizes representative prompts and AI assistance; it is not a verbatim export of the complete conversation. The candidate reviewed and validated the implementation and can explain the development decisions and changes.
 
 ## 11. Current Limitations
 
