@@ -10,7 +10,7 @@
 
 | Area | Assistance received |
 |---|---|
-| Project setup | Guidance on organizing the backend, frontend, data, documentation, and test folders |
+| Project setup | Guidance on organizing the backend, data, documentation, and test folders |
 | Database design | Discussion of entity relationships, primary keys, foreign keys, and constraints |
 | Synthetic data generation | Assistance reviewing deterministic data generation and CSV/JSON exports |
 | Data validation | Guidance on integrity checks, record counts, and validation results |
