@@ -14,6 +14,7 @@ The project uses reproducible synthetic academic data.
 - Detect student, room, and invigilator scheduling conflicts.
 - Generate five labelled anomaly scenarios for testing.
 - Allocate examinations using a greedy constraint-based scheduling algorithm.
+- Each schedule assignment links one exam, one room, and one invigilator for a specific time period.
 - Consider room capacity, equipment, accessibility, availability, student conflicts, and invigilator availability.
 - Generate scheduling and validation reports.
 - Verify reproducibility using SHA-256 checksums.
