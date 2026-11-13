@@ -32,23 +32,22 @@ The project uses reproducible synthetic academic data.
 
 ```text
 exam-scheduling-system/
-├── backend/
-│   ├── app/
-│   ├── tests/
-│   ├── generate_data.py
-│   ├── validate_data.py
-│   ├── inject_anomalies.py
-│   ├── run_scheduler.py
-│   ├── validate_generated_schedule.py
-│   └── verify_reproducibility.py
-├── data/
-│   ├── anomalies/
-│   └── scheduler_output/
-├── docs/
-│   └── schema-and-data-dictionary.md
-├── frontend/
-├── prompt-history/
-└── README.md
+â”œâ”€â”€ backend/
+â”‚   â”œâ”€â”€ app/
+â”‚   â”œâ”€â”€ tests/
+â”‚   â”œâ”€â”€ generate_data.py
+â”‚   â”œâ”€â”€ validate_data.py
+â”‚   â”œâ”€â”€ inject_anomalies.py
+â”‚   â”œâ”€â”€ run_scheduler.py
+â”‚   â”œâ”€â”€ validate_generated_schedule.py
+â”‚   â””â”€â”€ verify_reproducibility.py
+â”œâ”€â”€ data/
+â”‚   â”œâ”€â”€ anomalies/
+â”‚   â””â”€â”€ scheduler_output/
+â”œâ”€â”€ docs/
+â”‚   â””â”€â”€ schema-and-data-dictionary.md
+â”œâ”€â”€ prompt-history/
+â””â”€â”€ README.md
 ```
 
 ## 5. Synthetic Dataset
@@ -188,7 +187,3 @@ A record of AI-assisted work is maintained in `prompt-history/`. The prompt hist
 - Equipment quantities are not yet validated; current room matching uses Boolean equipment attributes.
 - Very large datasets may require further performance optimization and resource testing.
 - Portable SQL seed export is not yet implemented.
-
-## 12. License
-
-To be determined.
