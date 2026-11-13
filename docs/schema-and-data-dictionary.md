@@ -20,6 +20,7 @@ All generated records are synthetic.
 - One Exam can have multiple Schedule Assignments.
 - One Room can be used by multiple Schedule Assignments over time.
 - One Invigilator can have multiple Schedule Assignments over time.
+- Each ScheduleAssignment links exactly one Exam, one Room, and one Invigilator for a specific time period.
 
 Enrollment resolves the many-to-many relationship between Students and Courses.
 
