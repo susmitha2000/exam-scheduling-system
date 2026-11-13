@@ -8,6 +8,7 @@ The project uses reproducible synthetic academic data.
 
 ## 2. Implemented Features
 
+- Generate assignment creation event history in scheduler_output/assignment_events.csv.
 - Generate synthetic students, courses, enrollments, examinations, rooms, and invigilators.
 - Generate room capacity, availability, exam requirements, and accommodation records.
 - Validate primary keys, foreign keys, data constraints, and record consistency.

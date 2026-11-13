@@ -2,6 +2,7 @@
 import pytest
 
 from app.services.scheduler import room_meets_requirements
+from app.services.scheduler import build_assignment_events
 
 
 @pytest.mark.parametrize(
@@ -74,3 +75,20 @@ def test_room_without_requirements_is_accepted():
     )
 
     assert result is True
+
+def test_build_assignment_events():
+    assignments = [
+        {
+            "id": "ASN-EXAM-001-ROOM-001",
+            "status": "scheduled",
+            "created_at": "2026-01-01T00:00:00",
+        }
+    ]
+
+    events = build_assignment_events(assignments)
+
+    assert len(events) == 1
+    assert events[0]["assignment_id"] == "ASN-EXAM-001-ROOM-001"
+    assert events[0]["event_type"] == "assignment_created"
+    assert events[0]["new_status"] == "scheduled"
+    assert events[0]["changed_by"] == "scheduler"

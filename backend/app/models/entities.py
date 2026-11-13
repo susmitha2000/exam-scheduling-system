@@ -167,3 +167,19 @@ class ScheduleAssignment(Base):
         CheckConstraint("assigned_capacity > 0"),
         UniqueConstraint("exam_id", "room_id", name="uq_exam_room"),
     )
+
+class ScheduleAssignmentHistory(Base):
+    __tablename__ = "schedule_assignment_history"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    assignment_id = Column(
+        String,
+        ForeignKey("schedule_assignments.id"),
+        nullable=False,
+    )
+    event_type = Column(String(50), nullable=False)
+    previous_status = Column(String(30))
+    new_status = Column(String(30))
+    changed_at = Column(DateTime, nullable=False)
+    changed_by = Column(String(100))
+    notes = Column(Text)

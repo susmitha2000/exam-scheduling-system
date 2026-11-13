@@ -208,7 +208,7 @@ The current implementation focuses on synthetic data generation, baseline valida
 
 The following improvements remain:
 
-1. **Event history:** A dedicated audit/event history table is not yet implemented. Future work should record important changes to exams, assignments, and other scheduling records, including timestamps and the responsible user.
+1. **Event history:** Initial schedule-assignment creation events are recorded in `scheduler_output/assignment_events.csv`. A dedicated database history table is defined, but event persistence and subsequent status-change tracking are not yet integrated.
 
 2. **Lifecycle transitions:** Entities contain status fields, but a complete state-transition workflow with validation of permitted transitions is not yet implemented.
 
