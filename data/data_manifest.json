@@ -4,6 +4,7 @@
   "dataset_version": "1.0",
   "generation_seed": 20261022,
   "generated_at": "2026-01-01T00:00:00",
+  "generated_at_note": "Fixed reference timestamp used for deterministic synthetic data generation; not the actual execution time.",
   "data_type": "Synthetic",
   "description": "Synthetic academic examination scheduling dataset for testing room allocation, invigilator assignments, student conflicts, equipment requirements, and accommodations.",
   "baseline_records": {
