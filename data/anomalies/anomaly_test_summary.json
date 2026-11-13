@@ -22,7 +22,7 @@
     },
     {
         "scenario_id": "ANOM-004",
-        "conflicts_detected": 3,
+        "conflicts_detected": 1,
         "detected_issue_types": [
             "accommodation_ignored"
         ]

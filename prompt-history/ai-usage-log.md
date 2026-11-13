@@ -59,3 +59,9 @@ The implementation and documentation should be reviewed before submission. In pa
 ---
 
 **Transparency note:** This is a summary of AI assistance, not a verbatim export of every prompt. The original ChatGPT conversation should be retained as the detailed prompt-history record if requested by the assessment instructions.
+
+## 7. Prompt history availability
+
+This log records representative prompt topics and the nature of AI assistance used during development. It is not a complete verbatim transcript.
+
+The original ChatGPT conversation contains the detailed development discussion, code reviews, debugging steps, and verification guidance. If a complete export is unavailable, this summary is provided as the available record. No AI-generated implementation was accepted without local review and execution.

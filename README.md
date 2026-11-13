@@ -25,8 +25,8 @@ The project uses reproducible synthetic academic data.
 - SQLAlchemy
 - SQLite
 - Pydantic
+- CSV and JSON (Python standard library)
 - Pytest
-- React and TypeScript (frontend project)
 
 ## 4. Project Structure
 
@@ -65,7 +65,7 @@ The baseline dataset is generated using seed `20261022`.
 | Rooms | 100 |
 | Room Capacities | 100 |
 | Invigilators | 200 |
-| Availability | 6,601 |
+| Availability | 6,600 |
 | Accommodations | 250 |
 | Schedule Assignments | 300 |
 
@@ -102,6 +102,12 @@ Run these commands from the `backend` directory with the virtual environment act
 
 ```powershell
 python generate_data.py
+```
+
+Custom dataset sizes can be supplied through command-line arguments:
+
+```powershell
+python generate_data.py --students 5000 --courses 100 --exams 300 --rooms 100 --invigilators 200 --seed 20261022
 ```
 
 ### Validate baseline data
@@ -148,7 +154,7 @@ python -m uvicorn app.main:app --reload
 
 The API documentation is available at:
 
-`http://127.0.0.1:8000/docs`
+[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 ## 8. Expected Verification Results
 
@@ -180,7 +186,7 @@ A record of AI-assisted work is maintained in `prompt-history/`. The prompt hist
 - A dedicated audit/event history table is not implemented.
 - Complete lifecycle state-transition validation is not implemented.
 - Equipment quantities are not yet validated; current room matching uses Boolean equipment attributes.
-- Generator record counts are currently fixed rather than configurable.
+- Very large datasets may require further performance optimization and resource testing.
 - Portable SQL seed export is not yet implemented.
 
 ## 12. License

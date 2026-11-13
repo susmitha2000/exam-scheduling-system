@@ -1,5 +1,6 @@
 
 import csv
+import json
 from pathlib import Path
 from collections import defaultdict
 from datetime import datetime
@@ -33,21 +34,29 @@ accommodations = load_csv("accommodations")
 
 print("Starting data validation...")
 
-# 1. Expected row counts
+# 1. Expected row counts from generation summary
+with open(DATA_DIR / "generation_summary.json", encoding="utf-8") as f:
+    summary = json.load(f)
+
 expected = {
-    "students": (students, 5000),
-    "courses": (courses, 100),
-    "enrollments": (enrollments, 5000),
-    "exams": (exams, 300),
-    "rooms": (rooms, 100),
-    "invigilators": (invigilators, 200),
-    "accommodations": (accommodations, 250),
-    "schedule assignments": (assignments, 300),
+    "students": (students, summary["students"]),
+    "courses": (courses, summary["courses"]),
+    "enrollments": (enrollments, summary["enrollments"]),
+    "exams": (exams, summary["exams"]),
+    "rooms": (rooms, summary["rooms"]),
+    "invigilators": (invigilators, summary["invigilators"]),
+    "accommodations": (accommodations, summary["accommodations"]),
+    "schedule assignments": (
+        assignments,
+        summary["schedule_assignments"],
+    ),
 }
 
 for name, (records, count) in expected.items():
-    check(len(records) == count, f"{name}: expected {count}, got {len(records)}")
-
+    check(
+        len(records) == count,
+        f"{name}: expected {count}, got {len(records)}",
+    )
 # 2. Primary key uniqueness
 for name, records, field in [
     ("students", students, "id"),

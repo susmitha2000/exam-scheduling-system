@@ -49,7 +49,7 @@
         "ground_truth": true,
         "source_record_ids": [
             "EXAM-2027-000001",
-            "ROOM-000100"
+            "ROOM-000001"
         ],
         "description": "Simulate assigning the exam to a closed room."
     }

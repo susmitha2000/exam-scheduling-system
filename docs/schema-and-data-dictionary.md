@@ -177,7 +177,7 @@ Exactly one of `invigilator_id` or `room_id` must be populated.
 | Rooms | 100 |
 | Room Capacities | 100 |
 | Invigilators | 200 |
-| Availability | 6,601 |
+| Availability | 6,600 |
 | Accommodations | 250 |
 | Schedule Assignments | 300 |
 
@@ -213,7 +213,7 @@ The following improvements remain:
 
 3. **Equipment quantities:** Exam requirements include a `required_quantity` field. Current room matching checks equipment and accessibility using Boolean room attributes rather than validating equipment quantities.
 
-4. **Generator scalability:** The baseline generator currently uses fixed record counts. Future work should expose these counts as command-line parameters while preserving deterministic generation through a configurable seed.
+4. **Generator scalability:** The generator supports configurable student, course, exam, room, and invigilator counts through command-line arguments. Larger datasets may require performance optimization and additional resource testing.
 
 5. **SQL export:** CSV and JSON exports are provided. A portable SQL seed export is a future improvement.
 

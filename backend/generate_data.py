@@ -1,4 +1,6 @@
 
+
+import argparse
 import csv
 import json
 import random
@@ -20,14 +22,49 @@ from app.models.entities import (
     ScheduleAssignment,
 )
 
-SEED = 20261022
-random.seed(SEED)
+# Configurable dataset generation.
+parser = argparse.ArgumentParser(
+    description="Generate reproducible synthetic exam scheduling data."
+)
 
-STUDENT_COUNT = 5000
-COURSE_COUNT = 100
-EXAM_COUNT = 300
-ROOM_COUNT = 100
-INVIGILATOR_COUNT = 200
+parser.add_argument("--students", type=int, default=5000)
+parser.add_argument("--courses", type=int, default=100)
+parser.add_argument("--exams", type=int, default=300)
+parser.add_argument("--rooms", type=int, default=100)
+parser.add_argument("--invigilators", type=int, default=200)
+parser.add_argument("--seed", type=int, default=20261022)
+
+args = parser.parse_args()
+
+STUDENT_COUNT = args.students
+COURSE_COUNT = args.courses
+EXAM_COUNT = args.exams
+ROOM_COUNT = args.rooms
+INVIGILATOR_COUNT = args.invigilators
+SEED = args.seed
+
+if STUDENT_COUNT < 1:
+    parser.error("Students must be at least 1.")
+
+if COURSE_COUNT < 1:
+    parser.error("Courses must be at least 1.")
+
+if STUDENT_COUNT < COURSE_COUNT:
+    parser.error("Students must be at least the number of courses.")
+
+if EXAM_COUNT < 2:
+    parser.error("At least 2 exams are required for anomaly testing.")
+
+if COURSE_COUNT > EXAM_COUNT:
+    parser.error("Courses cannot exceed exams.")
+
+if ROOM_COUNT < 5:
+    parser.error("At least 5 rooms are required.")
+
+if INVIGILATOR_COUNT < 5:
+    parser.error("At least 5 invigilators are required.")
+
+random.seed(SEED)
 
 BASE_DATE = date(2027, 1, 4)
 GENERATED_AT = datetime(2026, 1, 1, 0, 0, 0)
@@ -51,9 +88,9 @@ assignments = []
 
 student_course = {}
 
-# 1. Students: 5,000 students, 50 per course.
+# 1. Students: distribute students evenly across courses.
 for i in range(1, STUDENT_COUNT + 1):
-    course_number = ((i - 1) // 50) + 1
+    course_number = ((i - 1) % COURSE_COUNT) + 1
     student_id = f"STU-{i:06d}"
     course_id = f"CRS-{course_number:06d}"
 
@@ -295,18 +332,6 @@ with SessionLocal() as db:
     db.add_all(assignments)
     db.add_all(availability)
 
-    # Add a labelled room closure for anomaly scenario ANOM-005.
-    room_closure = Availability(
-        invigilator_id=None,
-        room_id="ROOM-000100",
-        start_time=exams[0].start_time,
-        end_time=exams[0].end_time,
-        is_available=False,
-        reason="Synthetic room closure for anomaly scenario ANOM-005",
-    )
-
-    availability.append(room_closure)
-    db.add(room_closure)
 
     db.commit()
 
@@ -395,7 +420,7 @@ ground_truth = [
         "scenario_id": "ANOM-005",
         "issue_type": "exam_outside_room_availability",
         "ground_truth": True,
-        "source_record_ids": [first_exam.id, "ROOM-000100"],
+        "source_record_ids": [first_exam.id, assignments[0].room_id],
         "description": "Simulate assigning the exam to a closed room.",
     },
 ]

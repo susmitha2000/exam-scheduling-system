@@ -76,43 +76,50 @@ def detect_scenario(folder):
     return conflicts
 
 
+
 def scenario_1_student_overlap():
     folder = create_scenario("ANOM-001")
 
     exams = load_csv(folder, "exams.csv")
     enrollments = load_csv(folder, "enrollments.csv")
-    assignments = load_csv(folder, "schedule_assignments.csv")
+    accommodations = load_csv(folder, "accommodations.csv")
 
-    first = assignments[0]
-    second = assignments[1]
+    first = next(
+        e for e in exams if e["id"] == "EXAM-2027-000001"
+    )
+    second = next(
+        e for e in exams if e["id"] == "EXAM-2027-000002"
+    )
 
-    first_exam = next(
-        e for e in exams if e["id"] == first["exam_id"]
-    )
-    second_exam = next(
-        e for e in exams if e["id"] == second["exam_id"]
-    )
+    accommodated_students = {
+        item["student_id"] for item in accommodations
+    }
+
+    first_course_students = {
+        e["student_id"]
+        for e in enrollments
+        if e["course_id"] == first["course_id"]
+    }
 
     student_id = next(
         e["student_id"]
         for e in enrollments
-        if e["course_id"] == first_exam["course_id"]
+        if e["course_id"] == second["course_id"]
+        and e["student_id"] not in accommodated_students
+        and e["student_id"] not in first_course_students
     )
 
     enrollments.append({
         **enrollments[0],
         "id": "ANOM-ENR-001",
         "student_id": student_id,
-        "course_id": second_exam["course_id"],
+        "course_id": first["course_id"],
     })
 
-    second["start_time"] = first["start_time"]
-    second["end_time"] = first["end_time"]
-
     save_csv(folder, "enrollments.csv", enrollments)
-    save_csv(folder, "schedule_assignments.csv", assignments)
 
     return folder
+
 
 
 def scenario_2_room_capacity():
@@ -153,6 +160,7 @@ def scenario_3_invigilator_double_booking():
     return folder
 
 
+
 def scenario_4_accommodation_ignored():
     folder = create_scenario("ANOM-004")
 
@@ -161,6 +169,7 @@ def scenario_4_accommodation_ignored():
     accommodations = load_csv(folder, "accommodations.csv")
     assignments = load_csv(folder, "schedule_assignments.csv")
 
+    # Select one student who has extra exam time.
     accommodation = next(
         item for item in accommodations
         if int(item.get("extra_minutes", 0)) > 0
@@ -174,9 +183,11 @@ def scenario_4_accommodation_ignored():
         and item.get("status", "active") == "active"
     )
 
+    course_id = enrollment["course_id"]
+
     exam = next(
         item for item in exams
-        if item["course_id"] == enrollment["course_id"]
+        if item["course_id"] == course_id
     )
 
     assignment = next(
@@ -184,6 +195,23 @@ def scenario_4_accommodation_ignored():
         if item["exam_id"] == exam["id"]
     )
 
+    # Keep only this student's accommodation for this course.
+    course_student_ids = {
+        item["student_id"]
+        for item in enrollments
+        if item["course_id"] == course_id
+        and item.get("status", "active") == "active"
+    }
+
+    accommodations = [
+        item for item in accommodations
+        if item["student_id"] not in course_student_ids
+        or item["student_id"] == student_id
+    ]
+
+    save_csv(folder, "accommodations.csv", accommodations)
+
+    # Shorten the assignment to the standard exam duration.
     from datetime import datetime, timedelta
 
     start = datetime.fromisoformat(

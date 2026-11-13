@@ -15,7 +15,7 @@
     "rooms": 100,
     "room_capacities": 100,
     "invigilators": 200,
-    "availability": 6601,
+    "availability": 6600,
     "accommodations": 250,
     "schedule_assignments": 300
   },
@@ -80,7 +80,7 @@
       "filename": "availability.csv",
       "entity": "Availability",
       "format": "CSV",
-      "records": 6601,
+      "records": 6600,
       "primary_key": "id"
     },
     {
